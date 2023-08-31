@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendo</title>
+    {% include 'recommendcss.html' %}
+</head>
+<body>
+    <header>
+        <div id="title">
+            Recommendo
+        </div>
+    </header>
+    <div id="main">
+    <div id="details">Discover your next <span>favorite movie</span> with our innovative recommendation service! Simply enter the title of a movie you love, and watch as we curate a list of <span>personalized</span> suggestions based on your taste. Whether you're into thrilling action, heartfelt romance, thought-provoking drama, or side-splitting comedy, we've got the perfect movie for your next cinematic adventure.
+        </div>
+    <div >
+    <form method="post" id="inner">
+        {% csrf_token %}
+        <select id="inp" name="title"id="slot" >
+            <option value="">Enter the movie name</option>
+            {% for x in  data %}
+              <option value="{{x}}">{{ x }}</option>    
+            {% endfor %}
+        </select>
+        <input id="submit" type="submit" value="Recommend">
+    </form>
+    <div id="results">
+        {% for item in rmovies %}
+            <p>{{ item }}</p>
+        {% endfor %}
+     </div>
+    </div>
+    </div>
+</body>
+</html>
